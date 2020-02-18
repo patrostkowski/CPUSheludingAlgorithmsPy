@@ -1,17 +1,18 @@
 import os
 import sys
-import time
 from Process import Process
+from Algorithm import Algorithm
+from FCFS import FCFS
 
 def printf(process):
-    #os.system('cls')
-    print('name         arrival    burst      priority')
+    print('Name         Arrival    Burst      Priority')
     for i in range(0, len(process)):
         print(f'{process[i].name}     {process[i].arrival}          {process[i].burst}          {process[i].priority}')
 
+os.system('cls')
+
 if len(sys.argv)-1 == 0: 
     print('No arguments passed. Srcipt will be shut down.')
-    time.sleep(1)
     sys.exit()
 
 try:
@@ -29,5 +30,12 @@ int(processes[i][1]),
 int(processes[i][2]), 
 int(processes[i][3])) for i in range(0, len(processes))] # Creates list of objects (Processes) 
 
-sortProcess = sorted(process, key=lambda x: x.arrival)
-printf(sortProcess)
+'''
+a = Algorithm('a')
+a.SaveToFile(process)
+a.Results(process)
+'''
+
+fcfs = FCFS('fcfs')
+fcfs.Results(fcfs.Calculate(process))
+
