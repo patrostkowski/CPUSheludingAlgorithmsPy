@@ -2,9 +2,8 @@ from Algorithm import Algorithm
 import copy
 
 class FCFS(Algorithm):
-    process = []
-
     def Calculate(self, processes):
+        process = []
         process = copy.deepcopy(processes)
         process = sorted(process, key=lambda x: x.arrival)
 
@@ -20,8 +19,6 @@ class FCFS(Algorithm):
 
             process[i].turnaround = process[i].waiting + process[i].burst
             process[i].done = True 
-        
-        self.avarage_turnaround_time = (sum(p.turnaround for p in process) / len(process))
-        self.avarage_wait_time = (sum(p.waiting for p in process) / len(process))
 
+        self.FindSum(process)
         return process

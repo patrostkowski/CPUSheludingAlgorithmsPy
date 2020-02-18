@@ -1,5 +1,6 @@
 class Process():
     done = False
+    running = False
     waiting = 0
     turnaround = 0   
 

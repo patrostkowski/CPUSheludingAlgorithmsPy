@@ -3,6 +3,7 @@ import sys
 from Process import Process
 from Algorithm import Algorithm
 from FCFS import FCFS
+from SJF import SJF
 
 def printf(process):
     print('Name         Arrival    Burst      Priority')
@@ -36,6 +37,12 @@ a.SaveToFile(process)
 a.Results(process)
 '''
 
-fcfs = FCFS('fcfs')
-fcfs.Results(fcfs.Calculate(process))
+#fcfs = FCFS('fcfs')
+sjf = SJF('sjf')
+
+#fcfs.SaveToFile(fcfs.Results(fcfs.Calculate(process)))
+
+#fcfs.Results(fcfs.Calculate(process))
+sjf.Results(sjf.Calculate(process))
+
 
