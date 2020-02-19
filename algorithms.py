@@ -4,6 +4,8 @@ from Process import Process
 from Algorithm import Algorithm
 from FCFS import FCFS
 from SJF import SJF
+from RR import RR
+from datetime import datetime
 
 def printf(process):
     print('Name         Arrival    Burst      Priority')
@@ -37,12 +39,15 @@ a.SaveToFile(process)
 a.Results(process)
 '''
 
-#fcfs = FCFS('fcfs')
+fcfs = FCFS('fcfs')
 sjf = SJF('sjf')
+rr = RR('rr')
 
 #fcfs.SaveToFile(fcfs.Results(fcfs.Calculate(process)))
+#sjf.SaveToFile(sjf.Results(sjf.Calculate(process)))
 
 #fcfs.Results(fcfs.Calculate(process))
-sjf.Results(sjf.Calculate(process))
+#sjf.Results(sjf.Calculate(process))
+rr.Results(rr.Calculate(process))
 
 

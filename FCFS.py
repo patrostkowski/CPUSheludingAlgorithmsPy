@@ -21,4 +21,5 @@ class FCFS(Algorithm):
             process[i].done = True 
 
         self.FindSum(process)
+        
         return process

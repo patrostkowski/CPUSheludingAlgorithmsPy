@@ -29,3 +29,20 @@ class Algorithm():
         with open(f'/Users/Patryk/Desktop/{self.name}{str(datetime.now().strftime("%d-%m-%Y %H-%M-%S"))}.txt', 'w') as f:
             with redirect_stdout(f):
                 self.Results(process)
+
+                '''
+    def help(self, process, queue, done, clock, i, m, low):
+        os.system('cls')
+        print(f'clock: {clock}')
+        print(f'id: {i}')
+        print(f'n: {m}')
+        print(f'lowest val: {low}')
+        print(f'len que: {len(queue)}')
+        print('                             PROCESS')
+        self.Results(process)
+        print('                             QUEUE')
+        self.Results(queue)
+        print('                             DONE')
+        self.Results(done)
+        input('click key')
+'''
