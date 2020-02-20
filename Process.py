@@ -9,4 +9,3 @@ class Process():
         self.arrival = arrival
         self.burst = burst
         self.priority = priority
-

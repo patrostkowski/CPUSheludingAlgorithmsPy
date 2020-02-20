@@ -1,29 +1,31 @@
 from Algorithm import Algorithm
+from Process import Process
 import copy
 import os
 import sys
 
-class SJF(Algorithm):
+class PBS(Algorithm):
     def Calculate(self, processes):
         n = 0
         id = 0
-        lowest_list = []
         queue = []
         done = []
+        clock_time = 0
+        highest_list = []
 
         process = copy.deepcopy(processes)
         process = sorted(process, key=lambda x: x.arrival)
 
         for i in range(len(process)):
             if process[i].arrival == 0:
-                lowest_list.append(process[i].burst)
+                highest_list.append(process[i].priority)
 
-        lowest_val = min(lowest_list)
+        highest_val = max(highest_list)
 
-        while n != len(process):
+        while n != len(process):  
             for i in range(len(process)):
                 if process[i].running == False:
-                    if process[i].arrival == 0 and process[i].burst == lowest_val:
+                    if process[i].arrival ==0 and process[i].priority == highest_val:
                         done.append(process[i])
                         done[0].waiting = 0
                         done[0].turnaround = done[0].burst
@@ -32,23 +34,25 @@ class SJF(Algorithm):
                         n += 1
                     elif process[i].arrival <= clock_time:
                         queue.append(process[i])
-                        process[i].running = True     
+                        process[i].running = True
 
             if len(queue) > 0:
-               lowest_val = min(q.burst for q in queue)
+               highest_val = max(q.priority for q in queue)
 
             if id == len(queue):
                 id = 0
 
-            if queue[id].arrival <= clock_time and queue[id].burst == lowest_val:
+            if queue[id].arrival <= clock_time and queue[id].priority == highest_val:
                 queue[id].waiting = clock_time - queue[id].arrival
                 queue[id].turnaround = queue[id].waiting + queue[id].burst
+                for q in queue:
+                    q.priority += 1
                 done.append(queue[id])
                 clock_time += queue[id].burst
                 queue.remove(queue[id])
                 id = 0
                 n += 1
-            else: 
+            else:
                 id += 1
 
         self.FindSum(done)

@@ -17,7 +17,7 @@ class RR(Algorithm):
         process = sorted(process, key=lambda x: x.arrival)
        
         while n != len(process):
-            for i in range(0, len(process)):
+            for i in range(len(process)):
                 if process[i].done != True:
                     if process[i].arrival == 0 and process[i].running == False:
                         process[i].running = True
@@ -40,7 +40,7 @@ class RR(Algorithm):
                     process[id].done = True
                     clock_time += queue[id].burst
                     queue[id].running = False
-                    for i in range(0, len(process)):
+                    for i in range(len(process)):
                         if queue[id].name == process[i].name and queue[id].arrival == process[i].arrival:
                             process[i].turnaround = clock_time - process[i].arrival
                             process[i].waiting = process[i].turnaround - process[i].burst

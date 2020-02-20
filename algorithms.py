@@ -5,12 +5,8 @@ from Algorithm import Algorithm
 from FCFS import FCFS
 from SJF import SJF
 from RR import RR
+from PBS import PBS
 from datetime import datetime
-
-def printf(process):
-    print('Name         Arrival    Burst      Priority')
-    for i in range(0, len(process)):
-        print(f'{process[i].name}     {process[i].arrival}          {process[i].burst}          {process[i].priority}')
 
 os.system('cls')
 
@@ -33,21 +29,17 @@ int(processes[i][1]),
 int(processes[i][2]), 
 int(processes[i][3])) for i in range(0, len(processes))] # Creates list of objects (Processes) 
 
-'''
-a = Algorithm('a')
-a.SaveToFile(process)
-a.Results(process)
-'''
+date_now = str(datetime.now().strftime("%d-%m-%Y %H-%M-%S"))
+path = f'/Users/Patryk/Desktop/Algorithms{date_now}'
 
 fcfs = FCFS('fcfs')
 sjf = SJF('sjf')
 rr = RR('rr')
+pbs = PBS('pbs') 
 
-#fcfs.SaveToFile(fcfs.Results(fcfs.Calculate(process)))
-#sjf.SaveToFile(sjf.Results(sjf.Calculate(process)))
+os.mkdir(path)
 
-#fcfs.Results(fcfs.Calculate(process))
-#sjf.Results(sjf.Calculate(process))
-rr.Results(rr.Calculate(process))
-
-
+fcfs.SaveToFile(path, date_now, fcfs.Results(fcfs.Calculate(process)))
+sjf.SaveToFile(path, date_now, sjf.Results(sjf.Calculate(process)))
+rr.SaveToFile(path, date_now, rr.Results(rr.Calculate(process)))
+pbs.SaveToFile(path, date_now, pbs.Results(pbs.Calculate(process)))
