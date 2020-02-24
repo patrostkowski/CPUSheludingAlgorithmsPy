@@ -1,4 +1,4 @@
-CPU scheduler algorithms written in Python.
+CPU algorithms scheduler written in Python.
 
 How to execute the script:
 1. Change path in algorithms.py to your dekstop path e.g. path = f'/Users/XXXX/Desktop/Algorithms{date_now}'.
